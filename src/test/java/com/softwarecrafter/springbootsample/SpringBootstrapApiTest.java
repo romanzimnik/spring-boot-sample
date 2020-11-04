@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 //@SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@IntegrationTest("server.port=8081")
 public class SpringBootstrapApiTest {
 
     private static final String API_ROOT = "http://localhost:8081/api/books";
@@ -102,11 +103,13 @@ public class SpringBootstrapApiTest {
     public void whenDeleteCreatedBook_thenOk() {
         final Book book = createRandomBook();
         final String location = createBookAsUri(book);
+        System.out.println(location);
 
         Response response = RestAssured.delete(location);
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
         response = RestAssured.get(location);
+        System.out.println(response);
         assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode());
     }
 
