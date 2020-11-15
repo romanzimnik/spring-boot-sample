@@ -1,5 +1,6 @@
 package com.softwarecrafter.springbootsample;
 
+import com.softwarecrafter.springbootsample.common.Utils;
 import com.softwarecrafter.springbootsample.persistence.model.Book;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -26,7 +27,7 @@ public class SpringBootstrapApiTest {
 
     @Test
     public void whenGetBooksByTitle_thenOK() {
-        final Book book = createRandomBook();
+        final Book book = Utils.createRandomBook();
         createBookAsUri(book);
 
         final Response response = RestAssured.get(API_ROOT + "/title/" + book.getTitle());
@@ -37,7 +38,7 @@ public class SpringBootstrapApiTest {
 
     @Test
     public void whenGetCreatedBookById_thenOK() {
-        final Book book = createRandomBook();
+        final Book book = Utils.createRandomBook();
         final String location = createBookAsUri(book);
 
         final Response response = RestAssured.get(location);
@@ -55,7 +56,7 @@ public class SpringBootstrapApiTest {
     // POST
     @Test
     public void whenCreateNewBook_thenCreated() {
-        final Book book = createRandomBook();
+        final Book book = Utils.createRandomBook();
 
         final Response response = RestAssured.given()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -78,7 +79,7 @@ public class SpringBootstrapApiTest {
 
     @Test
     public void whenUpdateCreatedBook_thenUpdated() {
-        final Book book = createRandomBook();
+        final Book book = Utils.createRandomBook();
         final String location = createBookAsUri(book);
 
         book.setId(Long.parseLong(location.split("api/books/")[1]));
@@ -98,7 +99,7 @@ public class SpringBootstrapApiTest {
 
     @Test
     public void whenDeleteCreatedBook_thenOk() {
-        final Book book = createRandomBook();
+        final Book book = Utils.createRandomBook();
         final String location = createBookAsUri(book);
         System.out.println(location);
 
@@ -111,13 +112,6 @@ public class SpringBootstrapApiTest {
     }
 
     // ===============================
-
-    private Book createRandomBook() {
-        final Book book = new Book();
-        book.setTitle(randomAlphabetic(10));
-        book.setAuthor(randomAlphabetic(15));
-        return book;
-    }
 
     private String createBookAsUri(Book book) {
         final Response response = RestAssured.given()

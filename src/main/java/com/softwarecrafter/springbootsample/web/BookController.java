@@ -33,7 +33,8 @@ public class BookController {
                 .orElseThrow(BookNotFoundException::new);
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json", produces = "application/json")
+//    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Book create(@RequestBody Book book) {
         return bookRepository.save(book);
