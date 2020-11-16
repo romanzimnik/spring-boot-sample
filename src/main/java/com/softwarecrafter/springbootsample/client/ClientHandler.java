@@ -41,4 +41,12 @@ public class ClientHandler {
             ioe.printStackTrace();
         }
     }
+
+    public void deleteBooks() {
+        try {
+            HttpResponse response1 = Request.Delete(SERVER_ROOT + "/" + "1").execute().returnResponse();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
 }

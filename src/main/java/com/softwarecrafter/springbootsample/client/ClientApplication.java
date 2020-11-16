@@ -14,6 +14,7 @@ public class ClientApplication {
                     client.createBooks();
                 case "list":
                 case "delete":
+                    client.deleteBooks();
 
             }
         }

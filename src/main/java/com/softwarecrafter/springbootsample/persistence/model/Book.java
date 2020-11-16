@@ -1,18 +1,19 @@
 package com.softwarecrafter.springbootsample.persistence.model;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Entity
+@Document(collection = "Book")
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false, unique = true)
+    @Field(value = "Title")
     private String title;
 
-    @Column(nullable = false)
+    @Field(value = "Author")
     private String author;
 
     public Book() {
