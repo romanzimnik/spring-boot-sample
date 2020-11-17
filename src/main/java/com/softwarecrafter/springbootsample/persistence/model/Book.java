@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "Book")
 public class Book {
 
-    @Id
-    private long id;
+//    @Id
+//    private long id;
 
     @Field(value = "Title")
     private String title;
@@ -26,13 +26,13 @@ public class Book {
         this.author = author;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+//    public long getId() {
+//        return id;
+//    }
+//
+//    public void setId(long id) {
+//        this.id = id;
+//    }
 
     public String getTitle() {
         return title;
@@ -55,7 +55,7 @@ public class Book {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((author == null) ? 0 : author.hashCode());
-        result = prime * result + (int) (id ^ (id >>> 32));
+//        result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         return result;
     }
@@ -74,8 +74,8 @@ public class Book {
                 return false;
         } else if (!author.equals(other.author))
             return false;
-        if (id != other.id)
-            return false;
+//        if (id != other.id)
+//            return false;
         if (title == null) {
             if (other.title != null)
                 return false;
@@ -86,7 +86,12 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book [id=" + id + ", title=" + title + ", author=" + author + "]";
+        return "Book [title=" + title + ", author=" + author + "]";
     }
+
+//    @Override
+//    public String toString() {
+//        return "Book [id=" + id + ", title=" + title + ", author=" + author + "]";
+//    }
 
 }

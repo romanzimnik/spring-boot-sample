@@ -12,9 +12,12 @@ public class ClientApplication {
             switch (args[0]) {
                 case "create":
                     client.createBooks();
+                    break;
                 case "list":
+                    break;
                 case "delete":
                     client.deleteBooks();
+                    break;
 
             }
         }

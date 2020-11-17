@@ -46,14 +46,14 @@ public class BookController {
         bookRepository.deleteById(id);
     }
 
-    @PutMapping("/{id}")
-    public Book updateBook(@RequestBody Book book, @PathVariable Long id) {
-        if (book.getId() != id) {
-            throw new BookIdMismatchException();
-        }
-        bookRepository.findById(id)
-                .orElseThrow(BookNotFoundException::new);
-        return bookRepository.save(book);
-    }
+//    @PutMapping("/{id}")
+//    public Book updateBook(@RequestBody Book book, @PathVariable Long id) {
+//        if (book.getId() != id) {
+//            throw new BookIdMismatchException();
+//        }
+//        bookRepository.findById(id)
+//                .orElseThrow(BookNotFoundException::new);
+//        return bookRepository.save(book);
+//    }
 }
 
