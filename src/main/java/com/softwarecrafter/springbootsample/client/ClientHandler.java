@@ -43,8 +43,11 @@ public class ClientHandler {
     }
 
     public void deleteBooks() {
+
         try {
-            HttpResponse response1 = Request.Delete(SERVER_ROOT + "/" + "1").execute().returnResponse();
+            while (Utils.getCOUNTER() != 0) {
+                HttpResponse response1 = Request.Delete(SERVER_ROOT + "/" + "1").execute().returnResponse();
+            }
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

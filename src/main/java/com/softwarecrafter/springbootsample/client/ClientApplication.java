@@ -18,7 +18,6 @@ public class ClientApplication {
                 case "delete":
                     client.deleteBooks();
                     break;
-
             }
         }
     }

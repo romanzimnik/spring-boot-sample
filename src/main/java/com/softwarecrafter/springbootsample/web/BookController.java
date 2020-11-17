@@ -39,11 +39,11 @@ public class BookController {
         return bookRepository.save(book);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        bookRepository.findById(id)
+    @DeleteMapping("/{title}")
+    public void deleteByTitle(@PathVariable Long title) {
+        bookRepository.findById(title)
                 .orElseThrow(BookNotFoundException::new);
-        bookRepository.deleteById(id);
+        bookRepository.deleteById(title);
     }
 
 //    @PutMapping("/{id}")
