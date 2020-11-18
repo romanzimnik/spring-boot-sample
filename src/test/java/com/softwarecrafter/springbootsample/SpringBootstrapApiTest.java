@@ -10,7 +10,6 @@ import org.springframework.http.MediaType;
 
 import java.util.List;
 
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -27,7 +26,7 @@ public class SpringBootstrapApiTest {
 
     @Test
     public void whenGetBooksByTitle_thenOK() {
-        final Book book = Utils.createRandomBook();
+        final Book book = Utils.createRandomBook(1);
         createBookAsUri(book);
 
         final Response response = RestAssured.get(API_ROOT + "/title/" + book.getTitle());
@@ -38,7 +37,7 @@ public class SpringBootstrapApiTest {
 
     @Test
     public void whenGetCreatedBookById_thenOK() {
-        final Book book = Utils.createRandomBook();
+        final Book book = Utils.createRandomBook(1);
         final String location = createBookAsUri(book);
 
         final Response response = RestAssured.get(location);
@@ -56,7 +55,7 @@ public class SpringBootstrapApiTest {
     // POST
     @Test
     public void whenCreateNewBook_thenCreated() {
-        final Book book = Utils.createRandomBook();
+        final Book book = Utils.createRandomBook(1);
 
         final Response response = RestAssured.given()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -99,7 +98,7 @@ public class SpringBootstrapApiTest {
 
     @Test
     public void whenDeleteCreatedBook_thenOk() {
-        final Book book = Utils.createRandomBook();
+        final Book book = Utils.createRandomBook(1);
         final String location = createBookAsUri(book);
         System.out.println(location);
 

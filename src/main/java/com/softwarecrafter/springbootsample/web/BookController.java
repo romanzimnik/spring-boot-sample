@@ -2,13 +2,10 @@ package com.softwarecrafter.springbootsample.web;
 
 import com.softwarecrafter.springbootsample.persistence.model.Book;
 import com.softwarecrafter.springbootsample.persistence.repo.BookRepository;
-import com.softwarecrafter.springbootsample.web.exception.BookIdMismatchException;
 import com.softwarecrafter.springbootsample.web.exception.BookNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
@@ -22,13 +19,13 @@ public class BookController {
         return bookRepository.findAll();
     }
 
-    @GetMapping("/title/{bookTitle}")
-    public List findByTitle(@PathVariable String bookTitle) {
-        return bookRepository.findByTitle(bookTitle);
-    }
+//    @GetMapping("/{title}")
+//    public List findByTitle(@PathVariable String title) {
+//        return bookRepository.findByTitle(title);
+//    }
 
     @GetMapping("/{id}")
-    public Book findOne(@PathVariable Long id) {
+    public Book findOne(@PathVariable(value = "id") Long id) {
         return bookRepository.findById(id)
                 .orElseThrow(BookNotFoundException::new);
     }
@@ -39,11 +36,13 @@ public class BookController {
         return bookRepository.save(book);
     }
 
-    @DeleteMapping("/{title}")
-    public void deleteByTitle(@PathVariable Long title) {
-        bookRepository.findById(title)
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable Long id) {
+        System.out.println("OVER HERE!");
+        bookRepository.findById(id)
                 .orElseThrow(BookNotFoundException::new);
-        bookRepository.deleteById(title);
+        bookRepository.deleteById(id);
     }
 
 //    @PutMapping("/{id}")

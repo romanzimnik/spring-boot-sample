@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "Book")
 public class Book {
 
-//    @Id
-//    private long id;
+    @Id
+    private long id;
 
     @Field(value = "Title")
     private String title;
@@ -26,13 +26,13 @@ public class Book {
         this.author = author;
     }
 
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

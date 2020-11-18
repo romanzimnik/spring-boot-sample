@@ -10,33 +10,35 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ClientHandler {
 
     private CloseableHttpClient client;
     private final String SERVER_ROOT = "http://localhost:8081/api/books";
+    Gson gson = new Gson();
 
     public ClientHandler() {
         this.client = HttpClientBuilder.create().build();
-//        this.client = HttpClient.newBuilder()
-//                .version(HttpClient.Version.HTTP_1_1)
-//                .followRedirects(HttpClient.Redirect.NORMAL)
-//                .connectTimeout(Duration.ofSeconds(20))
-//                .authenticator(Authenticator.getDefault())
-//                .build();
     }
 
     public void createBooks() {
 
-        Gson gson = new Gson();
-        Book book1 = Utils.createRandomBook();
-        Book book2 = Utils.createRandomBook();
-        Book book3 = Utils.createRandomBook();
+        List<Book> listOfBooks = Utils.generateListOfBooks(5);
 
         try {
-            HttpResponse response1 = Request.Post(SERVER_ROOT).bodyString(gson.toJson(book1), ContentType.APPLICATION_JSON).execute().returnResponse();
-            HttpResponse response2 = Request.Post(SERVER_ROOT).bodyString(gson.toJson(book2), ContentType.APPLICATION_JSON).execute().returnResponse();
-            HttpResponse response3 = Request.Post(SERVER_ROOT).bodyString(gson.toJson(book3), ContentType.APPLICATION_JSON).execute().returnResponse();
+            for(Book book : listOfBooks) {
+                HttpResponse response = Request.Post(SERVER_ROOT).bodyString(gson.toJson(book), ContentType.APPLICATION_JSON).execute().returnResponse();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    public void deleteBook() {
+
+        try {
+            HttpResponse response = Request.Delete(SERVER_ROOT + "/" + "0").execute().returnResponse();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -45,9 +47,7 @@ public class ClientHandler {
     public void deleteBooks() {
 
         try {
-            while (Utils.getCOUNTER() != 0) {
-                HttpResponse response1 = Request.Delete(SERVER_ROOT + "/" + "1").execute().returnResponse();
-            }
+            HttpResponse response1 = Request.Delete(SERVER_ROOT + "/" + "1").execute().returnResponse();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
