@@ -11,6 +11,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class ClientHandler {
@@ -52,7 +53,7 @@ public class ClientHandler {
         try {
             HttpResponse allBooks = Request.Get(SERVER_ROOT).execute().returnResponse();
             String books = EntityUtils.toString(allBooks.getEntity());
-            Book[] bookList = gson.fromJson(books, Book[].class);
+            List<Book> bookList = Arrays.asList(gson.fromJson(books, Book[].class));
 
             for(Book book : bookList) {
                 HttpResponse response = Request.Delete(SERVER_ROOT + "/" + book.getId()).execute().returnResponse();
