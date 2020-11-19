@@ -16,7 +16,7 @@ public class ClientApplication {
                 case "list":
                     break;
                 case "delete":
-                    client.deleteBook();
+                    client.deleteBooks();
                     break;
             }
         }

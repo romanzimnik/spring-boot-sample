@@ -15,7 +15,8 @@ public class BookController {
     private BookRepository bookRepository;
 
     @GetMapping
-    public Iterable findAll() {
+    @ResponseStatus(HttpStatus.OK)
+    public Iterable<Book> findAll() {
         return bookRepository.findAll();
     }
 
