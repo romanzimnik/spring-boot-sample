@@ -37,7 +37,7 @@ public class ClientHandler {
         }
     }
 
-    public void deleteBook() {
+    public void getAllBooks() {
 
         try {
             HttpResponse response = Request.Delete(SERVER_ROOT + "/" + "0").execute().returnResponse();
