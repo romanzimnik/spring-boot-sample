@@ -30,7 +30,8 @@ public class ClientHandler {
 
         try {
             for(Book book : listOfBooks) {
-                HttpResponse response = Request.Post(SERVER_ROOT).bodyString(gson.toJson(book), ContentType.APPLICATION_JSON).execute().returnResponse();
+                HttpResponse response = Request.Post(SERVER_ROOT)
+                        .bodyString(gson.toJson(book), ContentType.APPLICATION_JSON).execute().returnResponse();
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -38,6 +39,20 @@ public class ClientHandler {
     }
 
     public void getAllBooks() {
+
+        try {
+            HttpResponse response = Request.Get(SERVER_ROOT).execute().returnResponse();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    public void updateBooks() {
+
+        List<Book> listOfBooks = Utils.generateListOfBooks(5);
+        for (Book book : listOfBooks) {
+//            book.getId()
+        }
 
         try {
             HttpResponse response = Request.Delete(SERVER_ROOT + "/" + "0").execute().returnResponse();

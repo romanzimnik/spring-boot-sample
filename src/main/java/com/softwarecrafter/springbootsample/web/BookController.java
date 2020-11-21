@@ -20,11 +20,6 @@ public class BookController {
         return bookRepository.findAll();
     }
 
-//    @GetMapping("/{title}")
-//    public List findByTitle(@PathVariable String title) {
-//        return bookRepository.findByTitle(title);
-//    }
-
     @GetMapping("/{id}")
     public Book findOne(@PathVariable(value = "id") Long id) {
         return bookRepository.findById(id)

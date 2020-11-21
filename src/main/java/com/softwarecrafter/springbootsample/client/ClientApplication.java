@@ -13,7 +13,11 @@ public class ClientApplication {
                 case "create":
                     client.createBooks();
                     break;
-                case "list":
+                case "read":
+                    client.getAllBooks();
+                    break;
+                case "update":
+                    client.updateBooks();
                     break;
                 case "delete":
                     client.deleteBooks();
