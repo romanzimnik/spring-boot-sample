@@ -13,6 +13,7 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
 
 public class ClientHandler {
 
@@ -50,12 +51,15 @@ public class ClientHandler {
     public void updateBooks() {
 
         List<Book> listOfBooks = Utils.generateListOfBooks(5);
-        for (Book book : listOfBooks) {
-//            book.getId()
-        }
 
         try {
-            HttpResponse response = Request.Delete(SERVER_ROOT + "/" + "0").execute().returnResponse();
+            for (ListIterator<Book> iterator = listOfBooks.listIterator(); iterator.hasNext();) {
+                Book book = iterator.next();
+                book.setTitle(iterator.next().getTitle().replaceAll("Title", "NewTitle"));
+
+                HttpResponse response = Request.Post(SERVER_ROOT)
+                        .bodyString(gson.toJson(book), ContentType.APPLICATION_JSON).execute().returnResponse();
+            }
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
