@@ -13,10 +13,8 @@ public final class Utils {
     private Utils() {
     }
 
-    public static Book createRandomBook(int counter) {
+    public static Book createRandomBook(long counter) {
         final Book book = new Book();
-//        int tmp = COUNTER++;
-//        System.out.println(COUNTER);
         book.setId(counter);
         book.setTitle("Title" + counter);
         book.setAuthor("Author" + counter);

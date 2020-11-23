@@ -50,14 +50,19 @@ public class ClientHandler {
 
     public void updateBooks() {
 
-        List<Book> listOfBooks = Utils.generateListOfBooks(5);
+        Gson gson = new Gson();
 
         try {
-            for (ListIterator<Book> iterator = listOfBooks.listIterator(); iterator.hasNext();) {
-                Book book = iterator.next();
-                book.setTitle(iterator.next().getTitle().replaceAll("Title", "NewTitle"));
 
-                HttpResponse response = Request.Post(SERVER_ROOT)
+            HttpResponse allBooks = Request.Get(SERVER_ROOT).execute().returnResponse();
+            String books = EntityUtils.toString(allBooks.getEntity());
+            List<Book> bookList = Arrays.asList(gson.fromJson(books, Book[].class));
+
+            for (ListIterator<Book> iterator = bookList.listIterator(); iterator.hasNext();) {
+                Book book = iterator.next();
+                book.setTitle(book.getTitle().replace("Title", "NewTitle"));
+
+                HttpResponse response = Request.Put(SERVER_ROOT + "/" + book.getId())
                         .bodyString(gson.toJson(book), ContentType.APPLICATION_JSON).execute().returnResponse();
             }
         } catch (IOException ioe) {
@@ -77,6 +82,15 @@ public class ClientHandler {
             for(Book book : bookList) {
                 HttpResponse response = Request.Delete(SERVER_ROOT + "/" + book.getId()).execute().returnResponse();
             }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    public void getFirst() {
+
+        try {
+            HttpResponse response = Request.Get(SERVER_ROOT + "/" + 0).execute().returnResponse();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

@@ -2,6 +2,7 @@ package com.softwarecrafter.springbootsample.web;
 
 import com.softwarecrafter.springbootsample.persistence.model.Book;
 import com.softwarecrafter.springbootsample.persistence.repo.BookRepository;
+import com.softwarecrafter.springbootsample.web.exception.BookIdMismatchException;
 import com.softwarecrafter.springbootsample.web.exception.BookNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public Book findOne(@PathVariable(value = "id") Long id) {
+    public Book findOne(@PathVariable Long id) {
         return bookRepository.findById(id)
                 .orElseThrow(BookNotFoundException::new);
     }
@@ -35,20 +36,20 @@ public class BookController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Long id) {
-        System.out.println("OVER HERE!");
         bookRepository.findById(id)
                 .orElseThrow(BookNotFoundException::new);
         bookRepository.deleteById(id);
     }
 
-//    @PutMapping("/{id}")
-//    public Book updateBook(@RequestBody Book book, @PathVariable Long id) {
-//        if (book.getId() != id) {
-//            throw new BookIdMismatchException();
-//        }
-//        bookRepository.findById(id)
-//                .orElseThrow(BookNotFoundException::new);
-//        return bookRepository.save(book);
-//    }
+    @PutMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Book updateBook(@RequestBody Book book, @PathVariable Long id) {
+        if (!book.getId().equals(id)) {
+            throw new BookIdMismatchException();
+        }
+        bookRepository.findById(id)
+                .orElseThrow(BookNotFoundException::new);
+        return bookRepository.save(book);
+    }
 }
 
