@@ -2,6 +2,10 @@ package com.softwarecrafter.springbootsample.client;
 
 import java.util.Arrays;
 
+/**
+ * This is a sample client application you can use from command line executing it with one of those program arguments
+ * listed within the switch case instruction.
+ */
 public class ClientApplication {
 
     public static void main(String[] args) {

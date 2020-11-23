@@ -21,10 +21,17 @@ public class ClientHandler {
     private final String SERVER_ROOT = "http://localhost:8081/api/books";
     Gson gson = new Gson();
 
+    /**
+     * Initializing the HttpClient by HttpClientbuilder.
+     */
     public ClientHandler() {
         this.client = HttpClientBuilder.create().build();
     }
 
+    /**
+     * Method for creating a set of n books, leveraged by using the Utils class and persisting it to the configured
+     * MongoDB instance.
+     */
     public void createBooks() {
 
         List<Book> listOfBooks = Utils.generateListOfBooks(5);
@@ -39,6 +46,9 @@ public class ClientHandler {
         }
     }
 
+    /**
+     * Method for retrieving all books from database.
+     */
     public void getAllBooks() {
 
         try {
@@ -48,6 +58,9 @@ public class ClientHandler {
         }
     }
 
+    /**
+     * Method for updating the persisted set of data in the database.
+     */
     public void updateBooks() {
 
         Gson gson = new Gson();
@@ -70,6 +83,9 @@ public class ClientHandler {
         }
     }
 
+    /**
+     * Mehod for deleting the whole chosen selection.
+     */
     public void deleteBooks() {
 
         Gson gson = new Gson();
@@ -87,6 +103,9 @@ public class ClientHandler {
         }
     }
 
+    /**
+     * Mehod for retrieving the first entry of a collection.
+     */
     public void getFirst() {
 
         try {
