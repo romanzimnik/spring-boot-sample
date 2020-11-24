@@ -5,6 +5,8 @@ import java.util.Arrays;
 /**
  * This is a sample client application you can use from command line executing it with one of those program arguments
  * listed within the switch case instruction.
+ *
+ * @author roman (rzett) from software-crafter.com
  */
 public class ClientApplication {
 

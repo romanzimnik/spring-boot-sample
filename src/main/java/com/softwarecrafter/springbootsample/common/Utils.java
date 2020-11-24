@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+/**
+ * @author roman (rzett) from software-crafter.com
+ */
 public final class Utils {
 
     private static int COUNTER = 0;

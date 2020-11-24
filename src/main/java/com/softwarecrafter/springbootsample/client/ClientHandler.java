@@ -15,6 +15,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * @author roman (rzett) from software-crafter.com
+ */
 public class ClientHandler {
 
     private CloseableHttpClient client;
