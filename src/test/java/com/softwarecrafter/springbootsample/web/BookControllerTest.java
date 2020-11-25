@@ -36,12 +36,12 @@ public class BookControllerTest extends AbstractTest {
     }
 
     @Test
-    public void createBookList() throws Exception {
+    public void createBook() throws Exception {
 
         Book book = new Book();
         book.setId(10L);
-        book.setTitle("test title");
-        book.setAuthor("test author");
+        book.setTitle("Test Title");
+        book.setAuthor("Test Author");
 
         String inputJson = super.mapToJson(book);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
@@ -51,6 +51,35 @@ public class BookControllerTest extends AbstractTest {
         assertEquals(201, status);
         String content = mvcResult.getResponse().getContentAsString();
         assertEquals(content, "{\"id\":10,\"title\":\"test title\",\"author\":\"test author\"}");
+    }
+
+    public void updateBook() throws Exception {
+
+        Book book = new Book();
+        book.setId(10L);
+        book.setTitle("Test Title");
+        book.setAuthor("Test Author");
+
+        String inputJson = super.mapToJson(book);
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(201, status);
+        String content = mvcResult.getResponse().getContentAsString();
+        assertEquals(content, "{\"id\":10,\"title\":\"Test Title\",\"author\":\"Test Author\"}");
+
+        book.setTitle("Test Title Update");
+
+        inputJson = super.mapToJson(book);
+        mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
+
+        status = mvcResult.getResponse().getStatus();
+        assertEquals(201, status);
+        content = mvcResult.getResponse().getContentAsString();
+        assertEquals(content, "{\"id\":10,\"title\":\"Test Title Update\",\"author\":\"Test Author\"}");
+
     }
 
 }
