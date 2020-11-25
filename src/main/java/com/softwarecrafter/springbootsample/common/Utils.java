@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 /**
+ * Helper class to avoid boilerplate code.
+ *
  * @author roman (rzett) from software-crafter.com
  */
 public final class Utils {
@@ -16,6 +18,11 @@ public final class Utils {
     private Utils() {
     }
 
+    /**
+     *
+     * @param counter used to modify id, title and author attributes of a book entity.
+     * @return one Book entity
+     */
     public static Book createRandomBook(long counter) {
         final Book book = new Book();
         book.setId(counter);
@@ -24,13 +31,14 @@ public final class Utils {
         return book;
     }
 
-    public static List<Book> generateListOfBooks(int i) {
+    /**
+     *
+     * @param amount of books to create.
+     * @return List of Books.
+     */
+    public static List<Book> generateListOfBooks(int amount) {
         List<Book> listOfBooks = new ArrayList<>();
-        IntStream.range(0, i).forEach(e -> listOfBooks.add(createRandomBook(e)));
+        IntStream.range(0, amount).forEach(e -> listOfBooks.add(createRandomBook(e)));
         return listOfBooks;
-    }
-
-    public static int getCounter() {
-        return COUNTER;
     }
 }

@@ -1,5 +1,6 @@
 package com.softwarecrafter.springbootsample.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -92,10 +93,5 @@ public class Book {
     public String toString() {
         return "Book [title=" + title + ", author=" + author + "]";
     }
-
-//    @Override
-//    public String toString() {
-//        return "Book [id=" + id + ", title=" + title + ", author=" + author + "]";
-//    }
 
 }
