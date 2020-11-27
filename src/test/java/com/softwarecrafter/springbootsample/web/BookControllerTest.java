@@ -50,9 +50,10 @@ public class BookControllerTest extends AbstractTest {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
         String content = mvcResult.getResponse().getContentAsString();
-        assertEquals(content, "{\"id\":10,\"title\":\"test title\",\"author\":\"test author\"}");
+        assertEquals(content, "{\"id\":10,\"title\":\"Test Title\",\"author\":\"Test Author\"}");
     }
 
+    @Test
     public void updateBook() throws Exception {
 
         Book book = new Book();
@@ -70,6 +71,7 @@ public class BookControllerTest extends AbstractTest {
         assertEquals(content, "{\"id\":10,\"title\":\"Test Title\",\"author\":\"Test Author\"}");
 
         book.setTitle("Test Title Update");
+        book.setAuthor("Test Author Update");
 
         inputJson = super.mapToJson(book);
         mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
@@ -78,7 +80,38 @@ public class BookControllerTest extends AbstractTest {
         status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
         content = mvcResult.getResponse().getContentAsString();
-        assertEquals(content, "{\"id\":10,\"title\":\"Test Title Update\",\"author\":\"Test Author\"}");
+        assertEquals(content, "{\"id\":10,\"title\":\"Test Title Update\",\"author\":\"Test Author Update\"}");
+    }
+
+    @Test
+    public void deleteBook() throws Exception {
+
+        Book book = new Book();
+        book.setId(10L);
+        book.setTitle("Test Title");
+        book.setAuthor("Test Author");
+
+        String inputJson = super.mapToJson(book);
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(201, status);
+        String content = mvcResult.getResponse().getContentAsString();
+        assertEquals(content, "{\"id\":10,\"title\":\"Test Title\",\"author\":\"Test Author\"}");
+
+        mvc.perform(MockMvcRequestBuilders.delete(SERVER_ROOT + "/" + book.getId())
+                .contentType(MediaType.APPLICATION_JSON).content(inputJson));
+
+        mvcResult = mvc.perform(MockMvcRequestBuilders.get(SERVER_ROOT)
+                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+        content = mvcResult.getResponse().getContentAsString();
+        Book[] bookList = super.mapFromJson(content, Book[].class);
+        for (Book book1 : bookList) {
+            System.out.println(book1.getId());
+        }
+        assertTrue(bookList.length == 0);
 
     }
 
