@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author roman (rzett) from software-crafter.com
+ * @author roman (romanzimnik) from software-crafter.com
  */
 
 @RestController
