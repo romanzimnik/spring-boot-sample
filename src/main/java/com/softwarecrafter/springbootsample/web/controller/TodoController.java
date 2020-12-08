@@ -3,11 +3,13 @@ package com.softwarecrafter.springbootsample.web.controller;
 import com.softwarecrafter.springbootsample.web.dto.TodoDTO;
 import com.softwarecrafter.springbootsample.web.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/todos")
 public class TodoController implements TodoService {
 
     private final TodoService service;

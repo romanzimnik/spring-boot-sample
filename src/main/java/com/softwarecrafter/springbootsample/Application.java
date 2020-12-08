@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
- * @author roman (rzett) from software-crafter.com
+ * @author roman (romanzimnik) from software-crafter.com
  */
 
 @EnableJpaRepositories("com.softwarecrafter.springbootsample.persistence.repo")
