@@ -1,4 +1,4 @@
-package com.softwarecrafter.springbootsample.web;
+package com.softwarecrafter.springbootsample.web.controller;
 
 import com.softwarecrafter.springbootsample.persistence.model.Book;
 import com.softwarecrafter.springbootsample.persistence.repo.BookRepository;
