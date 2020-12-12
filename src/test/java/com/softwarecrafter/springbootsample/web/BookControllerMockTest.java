@@ -1,6 +1,6 @@
 package com.softwarecrafter.springbootsample.web;
 
-import com.softwarecrafter.springbootsample.persistence.repo.BookRepository;
+import com.softwarecrafter.springbootsample.persistence.repository.BookRepository;
 import com.softwarecrafter.springbootsample.web.controller.BookController;
 import org.junit.Test;
 import org.junit.runner.RunWith;

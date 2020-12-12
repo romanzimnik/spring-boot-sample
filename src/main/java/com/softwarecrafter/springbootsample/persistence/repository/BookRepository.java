@@ -1,4 +1,4 @@
-package com.softwarecrafter.springbootsample.persistence.repo;
+package com.softwarecrafter.springbootsample.persistence.repository;
 
 import com.softwarecrafter.springbootsample.persistence.model.Book;
 import org.springframework.data.mongodb.repository.MongoRepository;

@@ -1,7 +1,7 @@
 package com.softwarecrafter.springbootsample.web.controller;
 
 import com.softwarecrafter.springbootsample.persistence.model.Book;
-import com.softwarecrafter.springbootsample.persistence.repo.BookRepository;
+import com.softwarecrafter.springbootsample.persistence.repository.BookRepository;
 import com.softwarecrafter.springbootsample.web.exception.BookIdMismatchException;
 import com.softwarecrafter.springbootsample.web.exception.BookNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * @author roman (romanzimnik) from software-crafter.com
  */
 
-@EnableJpaRepositories("com.softwarecrafter.springbootsample.persistence.repo")
+@EnableJpaRepositories("com.softwarecrafter.springbootsample.persistence.repository")
 @EntityScan("com.softwarecrafter.springbootsample.persistence.model")
 @SpringBootApplication
 public class Application {
