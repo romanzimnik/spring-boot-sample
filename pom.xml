@@ -97,6 +97,11 @@
 			<version>2.23.0</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
