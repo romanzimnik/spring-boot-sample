@@ -1,6 +1,5 @@
 package com.softwarecrafter.springbootsample.persistence.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -9,8 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
  * @author roman (rzett) from software-crafter.com
  */
 
-@Document(collection = "Book")
-public class Book {
+@Document(collection = "Note")
+public class Note {
 
     @Id
     private Long id;
@@ -21,11 +20,11 @@ public class Book {
     @Field(value = "Author")
     private String author;
 
-    public Book() {
+    public Note() {
         super();
     }
 
-    public Book(String title, String author) {
+    public Note(String title, String author) {
         super();
         this.title = title;
         this.author = author;
@@ -73,7 +72,7 @@ public class Book {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Book other = (Book) obj;
+        Note other = (Note) obj;
         if (author == null) {
             if (other.author != null)
                 return false;
@@ -91,7 +90,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book [title=" + title + ", author=" + author + "]";
+        return "Note [title=" + title + ", author=" + author + "]";
     }
 
 }

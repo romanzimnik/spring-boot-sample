@@ -1,7 +1,7 @@
 package com.softwarecrafter.springbootsample.web;
 
-import com.softwarecrafter.springbootsample.persistence.repository.BookRepository;
-import com.softwarecrafter.springbootsample.web.controller.BookController;
+import com.softwarecrafter.springbootsample.persistence.repository.NoteRepository;
+import com.softwarecrafter.springbootsample.web.controller.NoteController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,26 +18,26 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(BookController.class)
-public class BookControllerMockTest {
+@WebMvcTest(NoteController.class)
+public class NoteControllerMockTest {
 
     @Autowired
     private MockMvc mvc;
 
     @MockBean
-    private BookRepository repo;
+    private NoteRepository repo;
 
     @Test
-    public void getAllBooks() throws Exception {
+    public void getAllNotes() throws Exception {
 
         MvcResult result = mvc.perform( MockMvcRequestBuilders
-                .get("/api/books")
+                .get("/api/notes")
 
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk()
-//                .andExpect(MockMvcResultMatchers.jsonPath("$book").exists())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$book[*].id").isNotEmpty()
+//                .andExpect(MockMvcResultMatchers.jsonPath("$note").exists())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$note[*].id").isNotEmpty()
 
         )
         .andExpect(jsonPath("$").doesNotExist())

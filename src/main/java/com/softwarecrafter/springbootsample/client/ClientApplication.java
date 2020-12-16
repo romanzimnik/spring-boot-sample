@@ -17,19 +17,19 @@ public class ClientApplication {
         if(Arrays.stream(args).count() == 1) {
             switch (args[0]) {
                 case "create":
-                    client.createBooks();
+                    client.createNotes();
                     break;
                 case "read-all":
-                    client.getAllBooks();
+                    client.getAllNotes();
                     break;
                 case "read-first":
                     client.getFirst();
                     break;
                 case "update":
-                    client.updateBooks();
+                    client.updateNotes();
                     break;
                 case "delete":
-                    client.deleteBooks();
+                    client.deleteNotes();
                     break;
             }
         }

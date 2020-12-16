@@ -1,7 +1,7 @@
-package com.softwarecrafter.springbootsample.web.services;
+package com.softwarecrafter.springbootsample.middleware.services;
 
 import com.softwarecrafter.springbootsample.persistence.repository.TodoRepository;
-import com.softwarecrafter.springbootsample.web.dto.TodoDTO;
+import com.softwarecrafter.springbootsample.middleware.dto.TodoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,21 @@ public class RepositoryTodoService implements TodoService {
 
     @Override
     public TodoDTO findById(Long id) {
+        return null;
+    }
+
+    @Override
+    public TodoDTO create(TodoDTO todoDTO) {
+        return null;
+    }
+
+    @Override
+    public TodoDTO delete(Long id) {
+        return null;
+    }
+
+    @Override
+    public TodoDTO update(TodoDTO todoDTO) {
         return null;
     }
 }

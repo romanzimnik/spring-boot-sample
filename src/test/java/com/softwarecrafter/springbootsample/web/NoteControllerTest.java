@@ -1,7 +1,7 @@
 package com.softwarecrafter.springbootsample.web;
 
 import com.softwarecrafter.springbootsample.AbstractTest;
-import com.softwarecrafter.springbootsample.persistence.model.Book;
+import com.softwarecrafter.springbootsample.persistence.model.Note;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
@@ -11,9 +11,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BookControllerTest extends AbstractTest {
+public class NoteControllerTest extends AbstractTest {
 
-    private final String SERVER_ROOT = "http://localhost:8081/api/books";
+    private final String SERVER_ROOT = "http://localhost:8081/api/notes";
 
     @Override
     @Before
@@ -22,7 +22,7 @@ public class BookControllerTest extends AbstractTest {
     }
 
     @Test
-    public void getBookList() throws Exception {
+    public void getNoteList() throws Exception {
 
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(SERVER_ROOT)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
@@ -30,20 +30,20 @@ public class BookControllerTest extends AbstractTest {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
-        Book[] bookList = super.mapFromJson(content, Book[].class);
-        assertTrue(bookList.length > 0);
+        Note[] noteList = super.mapFromJson(content, Note[].class);
+        assertTrue(noteList.length > 0);
 
     }
 
     @Test
-    public void createBook() throws Exception {
+    public void createNote() throws Exception {
 
-        Book book = new Book();
-        book.setId(10L);
-        book.setTitle("Test Title");
-        book.setAuthor("Test Author");
+        Note note = new Note();
+        note.setId(10L);
+        note.setTitle("Test Title");
+        note.setAuthor("Test Author");
 
-        String inputJson = super.mapToJson(book);
+        String inputJson = super.mapToJson(note);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
 
@@ -54,14 +54,14 @@ public class BookControllerTest extends AbstractTest {
     }
 
     @Test
-    public void updateBook() throws Exception {
+    public void updateNote() throws Exception {
 
-        Book book = new Book();
-        book.setId(10L);
-        book.setTitle("Test Title");
-        book.setAuthor("Test Author");
+        Note note = new Note();
+        note.setId(10L);
+        note.setTitle("Test Title");
+        note.setAuthor("Test Author");
 
-        String inputJson = super.mapToJson(book);
+        String inputJson = super.mapToJson(note);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
 
@@ -70,10 +70,10 @@ public class BookControllerTest extends AbstractTest {
         String content = mvcResult.getResponse().getContentAsString();
         assertEquals(content, "{\"id\":10,\"title\":\"Test Title\",\"author\":\"Test Author\"}");
 
-        book.setTitle("Test Title Update");
-        book.setAuthor("Test Author Update");
+        note.setTitle("Test Title Update");
+        note.setAuthor("Test Author Update");
 
-        inputJson = super.mapToJson(book);
+        inputJson = super.mapToJson(note);
         mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
 
@@ -84,14 +84,14 @@ public class BookControllerTest extends AbstractTest {
     }
 
     @Test
-    public void deleteBook() throws Exception {
+    public void deleteNote() throws Exception {
 
-        Book book = new Book();
-        book.setId(10L);
-        book.setTitle("Test Title");
-        book.setAuthor("Test Author");
+        Note note = new Note();
+        note.setId(10L);
+        note.setTitle("Test Title");
+        note.setAuthor("Test Author");
 
-        String inputJson = super.mapToJson(book);
+        String inputJson = super.mapToJson(note);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
 
@@ -100,18 +100,18 @@ public class BookControllerTest extends AbstractTest {
         String content = mvcResult.getResponse().getContentAsString();
         assertEquals(content, "{\"id\":10,\"title\":\"Test Title\",\"author\":\"Test Author\"}");
 
-        mvc.perform(MockMvcRequestBuilders.delete(SERVER_ROOT + "/" + book.getId())
+        mvc.perform(MockMvcRequestBuilders.delete(SERVER_ROOT + "/" + note.getId())
                 .contentType(MediaType.APPLICATION_JSON).content(inputJson));
 
         mvcResult = mvc.perform(MockMvcRequestBuilders.get(SERVER_ROOT)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 
         content = mvcResult.getResponse().getContentAsString();
-        Book[] bookList = super.mapFromJson(content, Book[].class);
-        for (Book book1 : bookList) {
-            System.out.println(book1.getId());
+        Note[] noteList = super.mapFromJson(content, Note[].class);
+        for (Note note1 : noteList) {
+            System.out.println(note1.getId());
         }
-        assertTrue(bookList.length == 0);
+        assertTrue(noteList.length == 0);
 
     }
 

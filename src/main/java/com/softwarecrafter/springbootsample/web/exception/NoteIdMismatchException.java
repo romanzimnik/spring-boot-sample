@@ -4,21 +4,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-public class BookIdMismatchException extends RuntimeException {
+public class NoteIdMismatchException extends RuntimeException {
 
-    public BookIdMismatchException() {
+    public NoteIdMismatchException() {
         super();
     }
 
-    public BookIdMismatchException(final String message, final Throwable cause) {
+    public NoteIdMismatchException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
-    public BookIdMismatchException(final String message) {
+    public NoteIdMismatchException(final String message) {
         super(message);
     }
 
-    public BookIdMismatchException(final Throwable cause) {
+    public NoteIdMismatchException(final Throwable cause) {
         super(cause);
     }
 }

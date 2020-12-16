@@ -1,4 +1,4 @@
-package com.softwarecrafter.springbootsample.web.dto;
+package com.softwarecrafter.springbootsample.middleware.dto;
 
 import com.softwarecrafter.springbootsample.persistence.model.Todo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
