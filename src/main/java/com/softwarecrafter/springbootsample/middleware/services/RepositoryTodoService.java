@@ -1,11 +1,12 @@
 package com.softwarecrafter.springbootsample.middleware.services;
 
-import com.softwarecrafter.springbootsample.persistence.repository.TodoRepository;
 import com.softwarecrafter.springbootsample.middleware.dto.TodoDTO;
+import com.softwarecrafter.springbootsample.persistence.model.Todo;
+import com.softwarecrafter.springbootsample.persistence.repository.TodoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,7 +22,10 @@ public class RepositoryTodoService implements TodoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<TodoDTO> findAllTodos() {
+
+        List<Todo> todos = repository.findAll();
         return null;
     }
 

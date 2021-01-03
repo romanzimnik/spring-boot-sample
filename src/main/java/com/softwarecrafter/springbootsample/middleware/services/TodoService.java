@@ -3,9 +3,11 @@ package com.softwarecrafter.springbootsample.middleware.services;
 
 import com.softwarecrafter.springbootsample.middleware.dto.TodoDTO;
 
+import java.util.List;
+
 public interface TodoService {
 
-    Iterable<TodoDTO> findAllTodos();
+    List<TodoDTO> findAllTodos();
 
     TodoDTO findById(Long id);
 
