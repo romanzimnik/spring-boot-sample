@@ -2,6 +2,7 @@ package com.softwarecrafter.springbootsample.middleware.services;
 
 import com.softwarecrafter.springbootsample.middleware.dto.TodoDTO;
 import com.softwarecrafter.springbootsample.persistence.model.Todo;
+import com.softwarecrafter.springbootsample.persistence.model.TodoMapper;
 import com.softwarecrafter.springbootsample.persistence.repository.TodoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,8 @@ public class RepositoryTodoService implements TodoService {
     public List<TodoDTO> findAllTodos() {
 
         List<Todo> todos = repository.findAll();
-        return null;
+
+        return TodoMapper.mapEntitiesIntoDTOs(todos);
     }
 
     @Override
