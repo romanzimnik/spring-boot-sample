@@ -30,7 +30,7 @@ public class RepositoryTodoService implements TodoService {
 
         List<Todo> todos = repository.findAll();
 
-        return TodoMapper.mapEntitiesIntoDTOs(todos);
+        return TodoMapper.mapEntitiesIntoDtos(todos);
     }
 
     @Override
@@ -39,8 +39,11 @@ public class RepositoryTodoService implements TodoService {
     }
 
     @Override
-    public TodoDTO create(TodoDTO todoDTO) {
-        return null;
+    public TodoDTO create(TodoDTO todo) {
+
+        repository.save(TodoMapper.mapDtoToEntity(todo));
+
+        return todo;
     }
 
     @Override
@@ -49,7 +52,7 @@ public class RepositoryTodoService implements TodoService {
     }
 
     @Override
-    public TodoDTO update(TodoDTO todoDTO) {
+    public TodoDTO update(TodoDTO todo) {
         return null;
     }
 }

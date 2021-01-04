@@ -35,15 +35,16 @@ public class TodoController {
         return null;
     }
 
-    public TodoDTO create(TodoDTO todoDTO) {
-        return null;
+    @ResponseStatus(HttpStatus.CREATED)
+    public TodoDTO create(TodoDTO todo) {
+        return service.create(todo);
     }
 
     public TodoDTO delete(Long id) {
         return null;
     }
 
-    public TodoDTO update(TodoDTO todoDTO) {
+    public TodoDTO update(TodoDTO todo) {
         return null;
     }
 }

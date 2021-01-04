@@ -9,7 +9,7 @@ import java.time.ZonedDateTime;
 
 public class TodoDTO {
 
-    private String createdByUser;
+    private String creator;
 
     private ZonedDateTime creationTime;
 
@@ -18,7 +18,7 @@ public class TodoDTO {
 
     private Long id;
 
-    private String modifiedByUser;
+    private String modifier;
 
     private ZonedDateTime modificationTime;
 
@@ -29,8 +29,8 @@ public class TodoDTO {
     public TodoDTO() {
     }
 
-    public String getCreatedByUser() {
-        return createdByUser;
+    public String getCreator() {
+        return creator;
     }
 
     public ZonedDateTime getCreationTime() {
@@ -45,8 +45,8 @@ public class TodoDTO {
         return id;
     }
 
-    public String getModifiedByUser() {
-        return modifiedByUser;
+    public String getModifier() {
+        return modifier;
     }
 
     public ZonedDateTime getModificationTime() {
@@ -57,8 +57,8 @@ public class TodoDTO {
         return title;
     }
 
-    public void setCreatedByUser(String createdByUser) {
-        this.createdByUser = createdByUser;
+    public void setCreatedByUser(String creator) {
+        this.creator = creator;
     }
 
     public void setCreationTime(ZonedDateTime creationTime) {
@@ -73,8 +73,8 @@ public class TodoDTO {
         this.id = id;
     }
 
-    public void setModifiedByUser(String modifiedByUser) {
-        this.modifiedByUser = modifiedByUser;
+    public void setModifiedByUser(String modifier) {
+        this.modifier = modifier;
     }
 
     public void setModificationTime(ZonedDateTime modificationTime) {
@@ -88,11 +88,11 @@ public class TodoDTO {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("createdByUser", this.createdByUser)
+                .append("creator", this.creator)
                 .append("creationTime", this.creationTime)
                 .append("description", this.description)
                 .append("id", this.id)
-                .append("modifiedByUser", this.modifiedByUser)
+                .append("modifier", this.modifier)
                 .append("modificationTime", this.modificationTime)
                 .append("title", this.title)
                 .toString();

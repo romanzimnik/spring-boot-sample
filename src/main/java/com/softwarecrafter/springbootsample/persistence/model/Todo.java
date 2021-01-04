@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.ZonedDateTime;
+import java.util.Date;
 
 import static com.softwarecrafter.springbootsample.persistence.common.PreCondition.*;
 
@@ -19,7 +20,7 @@ public class Todo {
 
 //    @Column(name = "created_by_user", nullable = false)
 //    @CreatedBy
-    private String createdByUser;
+    private String creator;
 
 //    @Column(name = "creation_time", nullable = false)
 //    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
@@ -31,7 +32,7 @@ public class Todo {
 
 //    @Column(name = "modified_by_user", nullable = false)
 //    @LastModifiedBy
-    private String modifiedByUser;
+    private String modifier;
 
 //    @Column(name = "modification_time")
 //    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
@@ -40,9 +41,6 @@ public class Todo {
 
 //    @Column(name = "title", nullable = false, length = MAX_LENGTH_TITLE)
     private String title;
-
-//    @Version
-    private long version;
 
     /**
      * Required by Hibernate.
@@ -62,8 +60,8 @@ public class Todo {
         return id;
     }
 
-    String getCreatedByUser() {
-        return createdByUser;
+    String getCreator() {
+        return creator;
     }
 
     ZonedDateTime getCreationTime() {
@@ -74,8 +72,8 @@ public class Todo {
         return description;
     }
 
-    String getModifiedByUser() {
-        return modifiedByUser;
+    String getModifier() {
+        return modifier;
     }
 
     ZonedDateTime getModificationTime() {
@@ -84,10 +82,6 @@ public class Todo {
 
     String getTitle() {
         return title;
-    }
-
-    long getVersion() {
-        return version;
     }
 
     void update(String newTitle, String newDescription) {
@@ -114,14 +108,13 @@ public class Todo {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("createdByUser", this.createdByUser)
+                .append("creator", this.creator)
                 .append("creationTime", this.creationTime)
                 .append("description", this.description)
                 .append("id", this.id)
-                .append("modifiedByUser", this.modifiedByUser)
+                .append("modifier", this.modifier)
                 .append("modificationTime", this.modificationTime)
                 .append("title", this.title)
-                .append("version", this.version)
                 .toString();
     }
 
@@ -133,6 +126,12 @@ public class Todo {
     static class Builder {
         private String description;
         private String title;
+        private ZonedDateTime creationTime;
+        // TODO change creator type to Person/User
+        private String creator;
+        // TODO change modifier type to Person/User
+        private String modifier;
+        private ZonedDateTime modificationTime;
 
         private Builder() {}
 
@@ -143,6 +142,26 @@ public class Todo {
 
         Builder title(String title) {
             this.title = title;
+            return this;
+        }
+
+        Builder creationTime(ZonedDateTime creationTime) {
+            this.creationTime = creationTime;
+            return this;
+        }
+
+        Builder creator(String creator) {
+            this.creator = creator;
+            return this;
+        }
+
+        Builder modifier(String modifier) {
+            this.modifier = modifier;
+            return this;
+        }
+
+        Builder modificationTime(ZonedDateTime modificationTime) {
+            this.modificationTime = modificationTime;
             return this;
         }
 
