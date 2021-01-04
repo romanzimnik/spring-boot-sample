@@ -1,5 +1,8 @@
 package com.softwarecrafter.springbootsample.client;
 
+import com.softwarecrafter.springbootsample.client.note.NoteClientHandler;
+import com.softwarecrafter.springbootsample.client.todo.TodoClientHandler;
+
 import java.util.Arrays;
 
 /**
@@ -12,24 +15,16 @@ public class ClientApplication {
 
     public static void main(String[] args) {
 
-        ClientHandler client = new ClientHandler();
+        NoteClientHandler noteClient = new NoteClientHandler();
+        TodoClientHandler todoClient = new TodoClientHandler();
 
         if(Arrays.stream(args).count() == 1) {
             switch (args[0]) {
-                case "create":
-                    client.createNotes();
+                case "note":
+                    noteClient.execute(args[1]);
                     break;
-                case "read-all":
-                    client.getAllNotes();
-                    break;
-                case "read-first":
-                    client.getFirst();
-                    break;
-                case "update":
-                    client.updateNotes();
-                    break;
-                case "delete":
-                    client.deleteNotes();
+                case "todo":
+                    todoClient.execute(args[1]);
                     break;
             }
         }

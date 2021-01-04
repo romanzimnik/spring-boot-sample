@@ -19,7 +19,7 @@ public class TodoMapper {
         return dtos;
     }
 
-    static TodoDTO mapEntityIntoDto(Todo entity) {
+    public static TodoDTO mapEntityIntoDto(Todo entity) {
         TodoDTO dto = new TodoDTO();
 
         dto.setCreatedByUser(entity.getCreator());

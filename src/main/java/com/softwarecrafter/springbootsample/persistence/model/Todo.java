@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 import static com.softwarecrafter.springbootsample.persistence.common.PreCondition.*;
 
@@ -52,7 +51,7 @@ public class Todo {
         this.description = builder.description;
     }
 
-    static Builder getBuilder() {
+    public static Builder getBuilder() {
         return new Builder();
     }
 
@@ -123,7 +122,7 @@ public class Todo {
      * (use a constructor instead). I use the builder pattern here because it makes
      * the code a bit more easier to read.
      */
-    static class Builder {
+    public static class Builder {
         private String description;
         private String title;
         private ZonedDateTime creationTime;
@@ -135,37 +134,37 @@ public class Todo {
 
         private Builder() {}
 
-        Builder description(String description) {
+        public Builder description(String description) {
             this.description = description;
             return this;
         }
 
-        Builder title(String title) {
+        public Builder title(String title) {
             this.title = title;
             return this;
         }
 
-        Builder creationTime(ZonedDateTime creationTime) {
+        public Builder creationTime(ZonedDateTime creationTime) {
             this.creationTime = creationTime;
             return this;
         }
 
-        Builder creator(String creator) {
+        public Builder creator(String creator) {
             this.creator = creator;
             return this;
         }
 
-        Builder modifier(String modifier) {
+        public Builder modifier(String modifier) {
             this.modifier = modifier;
             return this;
         }
 
-        Builder modificationTime(ZonedDateTime modificationTime) {
+        public Builder modificationTime(ZonedDateTime modificationTime) {
             this.modificationTime = modificationTime;
             return this;
         }
 
-        Todo build() {
+        public Todo build() {
             Todo build = new Todo(this);
 
             build.requireValidTitleAndDescription(build.getTitle(), build.getDescription());
