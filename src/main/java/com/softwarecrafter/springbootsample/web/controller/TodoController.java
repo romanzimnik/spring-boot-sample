@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/todo")
-public class TodoController implements TodoService {
+public class TodoController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TodoController.class);
 
@@ -26,28 +26,23 @@ public class TodoController implements TodoService {
         this.service = service;
     }
 
-    @Override
     @ResponseStatus(HttpStatus.OK)
     public List<TodoDTO> findAllTodos() {
         return service.findAllTodos();
     }
 
-    @Override
     public TodoDTO findById(Long id) {
         return null;
     }
 
-    @Override
     public TodoDTO create(TodoDTO todoDTO) {
         return null;
     }
 
-    @Override
     public TodoDTO delete(Long id) {
         return null;
     }
 
-    @Override
     public TodoDTO update(TodoDTO todoDTO) {
         return null;
     }
