@@ -1,11 +1,11 @@
 package com.softwarecrafter.springbootsample.persistence.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 import static com.softwarecrafter.springbootsample.persistence.common.PreCondition.*;
 
@@ -16,7 +16,7 @@ public class Todo {
     public static final int MAX_LENGTH_TITLE = 100;
 
     @Id
-    private String id;
+    private ObjectId id;
 
 //    @Column(name = "created_by_user", nullable = false)
 //    @CreatedBy
@@ -63,11 +63,11 @@ public class Todo {
         return new Builder();
     }
 
-    String getId() {
+    ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

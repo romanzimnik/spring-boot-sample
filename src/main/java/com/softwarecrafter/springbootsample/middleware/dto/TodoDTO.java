@@ -2,13 +2,15 @@ package com.softwarecrafter.springbootsample.middleware.dto;
 
 import com.softwarecrafter.springbootsample.persistence.model.Todo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.bson.types.ObjectId;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 public class TodoDTO {
+
+    private ObjectId id;
 
     private String creator;
 
@@ -16,8 +18,6 @@ public class TodoDTO {
 
     @Size(max = Todo.MAX_LENGTH_DESCRIPTION)
     private String description;
-
-    private String id;
 
     private String modifier;
 
@@ -42,7 +42,7 @@ public class TodoDTO {
         return description;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
@@ -70,7 +70,7 @@ public class TodoDTO {
         this.description = description;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
