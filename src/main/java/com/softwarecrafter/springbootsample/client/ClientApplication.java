@@ -18,7 +18,7 @@ public class ClientApplication {
         NoteClientHandler noteClient = new NoteClientHandler();
         TodoClientHandler todoClient = new TodoClientHandler();
 
-        if(Arrays.stream(args).count() == 1) {
+        if(Arrays.stream(args).count() >= 1) {
             switch (args[0]) {
                 case "note":
                     noteClient.execute(args[1]);

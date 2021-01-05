@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 import static com.softwarecrafter.springbootsample.persistence.common.PreCondition.*;
@@ -15,7 +16,7 @@ public class Todo {
     public static final int MAX_LENGTH_TITLE = 100;
 
     @Id
-    private Long id;
+    private String id;
 
 //    @Column(name = "created_by_user", nullable = false)
 //    @CreatedBy
@@ -24,7 +25,7 @@ public class Todo {
 //    @Column(name = "creation_time", nullable = false)
 //    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
 //    @CreatedDate
-    private ZonedDateTime creationTime;
+    private LocalDateTime creationTime;
 
 //    @Column(name = "description", length = MAX_LENGTH_DESCRIPTION)
     private String description;
@@ -36,7 +37,7 @@ public class Todo {
 //    @Column(name = "modification_time")
 //    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
 //    @LastModifiedDate
-    private ZonedDateTime modificationTime;
+    private LocalDateTime modificationTime;
 
 //    @Column(name = "title", nullable = false, length = MAX_LENGTH_TITLE)
     private String title;
@@ -44,26 +45,37 @@ public class Todo {
     /**
      * Required by Hibernate.
      */
-    private Todo() {}
+    private Todo() {
+        super();
+    }
 
     private Todo(Builder builder) {
+        super();
         this.title = builder.title;
         this.description = builder.description;
+        this.creator = builder.creator;
+        this.modifier = builder.modifier;
+        this.creationTime = builder.creationTime;
+        this.modificationTime = builder.modificationTime;
     }
 
     public static Builder getBuilder() {
         return new Builder();
     }
 
-    Long getId() {
+    String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     String getCreator() {
         return creator;
     }
 
-    ZonedDateTime getCreationTime() {
+    LocalDateTime getCreationTime() {
         return creationTime;
     }
 
@@ -75,7 +87,7 @@ public class Todo {
         return modifier;
     }
 
-    ZonedDateTime getModificationTime() {
+    LocalDateTime getModificationTime() {
         return modificationTime;
     }
 
@@ -83,14 +95,19 @@ public class Todo {
         return title;
     }
 
-    void update(String newTitle, String newDescription) {
-        requireValidTitleAndDescription(newTitle, newDescription);
+//    void update(String newTitle, String newDescription) {
+//        requireValidTitleAndDescription(newTitle, newDescription);
+//
+//        this.title = newTitle;
+//        this.description = newDescription;
+//    }
 
-        this.title = newTitle;
-        this.description = newDescription;
-    }
-
-    private void requireValidTitleAndDescription(String title, String description) {
+    private void requireValidTitleAndDescription(String title,
+                                                 String description,
+                                                 String creator,
+                                                 String modifier,
+                                                 LocalDateTime creationTime,
+                                                 LocalDateTime modificationTime) {
         notNull(title, "Title cannot be null.");
         notEmpty(title, "Title cannot be empty.");
         isTrue(title.length() <= MAX_LENGTH_TITLE,
@@ -125,12 +142,12 @@ public class Todo {
     public static class Builder {
         private String description;
         private String title;
-        private ZonedDateTime creationTime;
+        private LocalDateTime creationTime;
         // TODO change creator type to Person/User
         private String creator;
         // TODO change modifier type to Person/User
         private String modifier;
-        private ZonedDateTime modificationTime;
+        private LocalDateTime modificationTime;
 
         private Builder() {}
 
@@ -144,7 +161,7 @@ public class Todo {
             return this;
         }
 
-        public Builder creationTime(ZonedDateTime creationTime) {
+        public Builder creationTime(LocalDateTime creationTime) {
             this.creationTime = creationTime;
             return this;
         }
@@ -159,7 +176,7 @@ public class Todo {
             return this;
         }
 
-        public Builder modificationTime(ZonedDateTime modificationTime) {
+        public Builder modificationTime(LocalDateTime modificationTime) {
             this.modificationTime = modificationTime;
             return this;
         }
@@ -167,7 +184,13 @@ public class Todo {
         public Todo build() {
             Todo build = new Todo(this);
 
-            build.requireValidTitleAndDescription(build.getTitle(), build.getDescription());
+            build.requireValidTitleAndDescription(
+                    build.getTitle(),
+                    build.getDescription(),
+                    build.getCreator(),
+                    build.getModifier(),
+                    build.getCreationTime(),
+                    build.getModificationTime());
 
             return build;
         }

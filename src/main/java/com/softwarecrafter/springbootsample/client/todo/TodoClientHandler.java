@@ -1,10 +1,10 @@
 package com.softwarecrafter.springbootsample.client.todo;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.softwarecrafter.springbootsample.common.Utils;
+import com.softwarecrafter.springbootsample.common.LocalDateTimeAdapter;
 import com.softwarecrafter.springbootsample.middleware.dto.TodoDTO;
-import com.softwarecrafter.springbootsample.persistence.model.Note;
-import com.softwarecrafter.springbootsample.persistence.model.Todo;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
@@ -24,8 +26,10 @@ public class TodoClientHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(TodoClientHandler.class);
 
     private CloseableHttpClient client;
-    private final String SERVER_ROOT = "http://localhost:8081/api/todos";
-    Gson gson = new Gson();
+    private final String SERVER_ROOT = "http://localhost:8081/api/todo";
+    Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter().nullSafe())
+            .create();
 
     /**
      * Initializing the HttpClient by HttpClientbuilder.
@@ -119,6 +123,7 @@ public class TodoClientHandler {
     }
 
     public void execute(String arg) {
+//        System.out.println("todo " + arg);
         switch (arg) {
             case "create":
                 createTodos();

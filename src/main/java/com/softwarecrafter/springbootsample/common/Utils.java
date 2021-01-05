@@ -5,6 +5,7 @@ import com.softwarecrafter.springbootsample.persistence.model.Note;
 import com.softwarecrafter.springbootsample.persistence.model.Todo;
 import com.softwarecrafter.springbootsample.persistence.model.TodoMapper;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,10 +51,10 @@ public final class Utils {
         final Todo todo = Todo.getBuilder()
                 .description("Description" + counter)
                 .title("Title" + counter)
-                .creationTime(ZonedDateTime.now())
                 .creator("Creator" + counter)
+                .creationTime(LocalDateTime.now())
                 .modifier("Modifier" + counter)
-                .modificationTime(ZonedDateTime.now())
+                .modificationTime(LocalDateTime.now())
                 .build();
         return TodoMapper.mapEntityIntoDto(todo);
     }

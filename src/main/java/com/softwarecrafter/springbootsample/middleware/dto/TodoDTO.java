@@ -5,22 +5,23 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 public class TodoDTO {
 
     private String creator;
 
-    private ZonedDateTime creationTime;
+    private LocalDateTime creationTime;
 
     @Size(max = Todo.MAX_LENGTH_DESCRIPTION)
     private String description;
 
-    private Long id;
+    private String id;
 
     private String modifier;
 
-    private ZonedDateTime modificationTime;
+    private LocalDateTime modificationTime;
 
     @NotEmpty
     @Size(max = Todo.MAX_LENGTH_TITLE)
@@ -33,7 +34,7 @@ public class TodoDTO {
         return creator;
     }
 
-    public ZonedDateTime getCreationTime() {
+    public LocalDateTime getCreationTime() {
         return creationTime;
     }
 
@@ -41,7 +42,7 @@ public class TodoDTO {
         return description;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -49,7 +50,7 @@ public class TodoDTO {
         return modifier;
     }
 
-    public ZonedDateTime getModificationTime() {
+    public LocalDateTime getModificationTime() {
         return modificationTime;
     }
 
@@ -61,7 +62,7 @@ public class TodoDTO {
         this.creator = creator;
     }
 
-    public void setCreationTime(ZonedDateTime creationTime) {
+    public void setCreationTime(LocalDateTime creationTime) {
         this.creationTime = creationTime;
     }
 
@@ -69,7 +70,7 @@ public class TodoDTO {
         this.description = description;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -77,7 +78,7 @@ public class TodoDTO {
         this.modifier = modifier;
     }
 
-    public void setModificationTime(ZonedDateTime modificationTime) {
+    public void setModificationTime(LocalDateTime modificationTime) {
         this.modificationTime = modificationTime;
     }
 
