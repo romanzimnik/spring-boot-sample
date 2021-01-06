@@ -2,6 +2,7 @@ package com.softwarecrafter.springbootsample.web;
 
 import com.softwarecrafter.springbootsample.AbstractTest;
 import com.softwarecrafter.springbootsample.persistence.model.Note;
+import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
@@ -39,7 +40,7 @@ public class NoteControllerTest extends AbstractTest {
     public void createNote() throws Exception {
 
         Note note = new Note();
-        note.setId(10L);
+        note.setId(new ObjectId());
         note.setTitle("Test Title");
         note.setAuthor("Test Author");
 
@@ -57,7 +58,7 @@ public class NoteControllerTest extends AbstractTest {
     public void updateNote() throws Exception {
 
         Note note = new Note();
-        note.setId(10L);
+        note.setId(new ObjectId());
         note.setTitle("Test Title");
         note.setAuthor("Test Author");
 
@@ -87,7 +88,7 @@ public class NoteControllerTest extends AbstractTest {
     public void deleteNote() throws Exception {
 
         Note note = new Note();
-        note.setId(10L);
+        note.setId(new ObjectId());
         note.setTitle("Test Title");
         note.setAuthor("Test Author");
 

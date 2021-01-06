@@ -1,5 +1,6 @@
 package com.softwarecrafter.springbootsample.persistence.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -12,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Note {
 
     @Id
-    private Long id;
+    private ObjectId id;
 
     @Field(value = "Title")
     private String title;
@@ -30,11 +31,11 @@ public class Note {
         this.author = author;
     }
 
-    public Long getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

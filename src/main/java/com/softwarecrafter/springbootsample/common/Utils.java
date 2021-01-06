@@ -30,7 +30,7 @@ public final class Utils {
      */
     public static Note createRandomNote(long counter) {
         final Note note = new Note();
-        note.setId(counter);
+//        note.setId(counter);
         note.setTitle("Title" + counter);
         note.setAuthor("Author" + counter);
         return note;
