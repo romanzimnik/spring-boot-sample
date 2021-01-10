@@ -50,7 +50,9 @@ public class TodoController {
         return null;
     }
 
-    public TodoDTO update(TodoDTO todo) {
-        return null;
+    @PutMapping(consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public TodoDTO update(@RequestBody @Valid TodoDTO todo) {
+        return service.update(todo);
     }
 }

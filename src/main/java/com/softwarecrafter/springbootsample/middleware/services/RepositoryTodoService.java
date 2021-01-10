@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RepositoryTodoService implements TodoService {
@@ -46,11 +45,12 @@ public class RepositoryTodoService implements TodoService {
     }
 
     @Override
+    @Transactional
     public TodoDTO create(TodoDTO todo) {
 
-        repository.save(TodoMapper.mapDtoToEntity(todo));
+        Todo t = repository.save(TodoMapper.mapDtoToEntity(todo));
 
-        return todo;
+        return TodoMapper.mapEntityIntoDto(t);
     }
 
     @Override
@@ -59,7 +59,11 @@ public class RepositoryTodoService implements TodoService {
     }
 
     @Override
+    @Transactional
     public TodoDTO update(TodoDTO todo) {
-        return null;
+
+        Todo t = repository.save(TodoMapper.mapDtoToEntity(todo));
+
+        return TodoMapper.mapEntityIntoDto(t);
     }
 }

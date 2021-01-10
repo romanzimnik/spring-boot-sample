@@ -1,5 +1,6 @@
 package com.softwarecrafter.springbootsample.middleware.dto;
 
+import com.google.gson.annotations.SerializedName;
 import com.softwarecrafter.springbootsample.persistence.model.Todo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.bson.types.ObjectId;
@@ -10,21 +11,28 @@ import java.time.LocalDateTime;
 
 public class TodoDTO {
 
+    @SerializedName("_id")
     private ObjectId id;
 
+    @SerializedName("creator")
     private String creator;
 
+    @SerializedName("creationTime")
     private LocalDateTime creationTime;
 
+    @SerializedName("description")
     @Size(max = Todo.MAX_LENGTH_DESCRIPTION)
     private String description;
 
+    @SerializedName("modifier")
     private String modifier;
 
+    @SerializedName("modificationTime")
     private LocalDateTime modificationTime;
 
     @NotEmpty
     @Size(max = Todo.MAX_LENGTH_TITLE)
+    @SerializedName("title")
     private String title;
 
     public TodoDTO() {
