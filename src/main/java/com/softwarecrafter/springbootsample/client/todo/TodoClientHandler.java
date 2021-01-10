@@ -2,8 +2,8 @@ package com.softwarecrafter.springbootsample.client.todo;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.softwarecrafter.springbootsample.common.Utils;
 import com.softwarecrafter.springbootsample.common.LocalDateTimeAdapter;
+import com.softwarecrafter.springbootsample.common.Utils;
 import com.softwarecrafter.springbootsample.middleware.dto.TodoDTO;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.fluent.Request;
@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
@@ -43,8 +42,6 @@ public class TodoClientHandler {
 
         List<TodoDTO> listOfTodos = Utils.generateListOfTodos(5);
 
-        LOGGER.info("Creating Todos...");
-
         try {
             for(TodoDTO todo : listOfTodos) {
                 HttpResponse response = Request.Post(SERVER_ROOT)
@@ -53,8 +50,6 @@ public class TodoClientHandler {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-
-        LOGGER.info("Todos created and persisted!");
     }
 
     /**
@@ -115,15 +110,30 @@ public class TodoClientHandler {
      */
     private void getFirst() {
 
+        List<TodoDTO> listOfTodos = Utils.generateListOfTodos(1);
+
         try {
-            HttpResponse response = Request.Get(SERVER_ROOT + "/" + 0).execute().returnResponse();
+            for(TodoDTO todo : listOfTodos) {
+                HttpResponse response = Request.Post(SERVER_ROOT)
+                        .bodyString(gson.toJson(todo), ContentType.APPLICATION_JSON).execute().returnResponse();
+            }
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+
+        try {
+            HttpResponse response = Request.Get(SERVER_ROOT + "/" + listOfTodos.get(0).getId())
+                    .execute().returnResponse();
+
+            System.out.println(response.getEntity().getContent().toString());
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
     }
 
     public void execute(String arg) {
-//        System.out.println("todo " + arg);
         switch (arg) {
             case "create":
                 createTodos();

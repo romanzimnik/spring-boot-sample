@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @author roman (romanzimnik) from software-crafter.com
  */
-
 @RestController
 @RequestMapping("/api/notes")
 public class NoteController {
