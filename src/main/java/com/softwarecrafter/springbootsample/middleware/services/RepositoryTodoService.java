@@ -37,9 +37,9 @@ public class RepositoryTodoService implements TodoService {
     @Transactional(readOnly = true)
     public TodoDTO findById(ObjectId id) {
 
-        Todo todo = repository.findById(id);
+        Todo t = repository.findById(id);
 
-        TodoDTO todoDto = TodoMapper.mapEntityIntoDto(todo);
+        TodoDTO todoDto = TodoMapper.mapEntityIntoDto(t);
 
         return todoDto;
     }
@@ -55,7 +55,10 @@ public class RepositoryTodoService implements TodoService {
 
     @Override
     public TodoDTO delete(ObjectId id) {
-        return null;
+        Todo t = repository.findById(id);
+        repository.delete(t);
+
+        return TodoMapper.mapEntityIntoDto(t);
     }
 
     @Override
