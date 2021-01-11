@@ -35,3 +35,6 @@ build/
 ### MongoDB ###
 /mongodb-data
 
+### Angular ###
+node_modules/
+dist/
