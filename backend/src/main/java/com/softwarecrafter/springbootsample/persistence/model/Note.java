@@ -15,20 +15,20 @@ public class Note {
     @Id
     private ObjectId id;
 
-    @Field(value = "Title")
+    @Field(value = "title")
     private String title;
 
     @Field(value = "Author")
-    private String author;
+    private String creator;
 
     public Note() {
         super();
     }
 
-    public Note(String title, String author) {
+    public Note(String title, String creator) {
         super();
         this.title = title;
-        this.author = author;
+        this.creator = creator;
     }
 
     public ObjectId getId() {
@@ -47,19 +47,19 @@ public class Note {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((author == null) ? 0 : author.hashCode());
+        result = prime * result + ((creator == null) ? 0 : creator.hashCode());
 //        result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         return result;
@@ -74,10 +74,10 @@ public class Note {
         if (getClass() != obj.getClass())
             return false;
         Note other = (Note) obj;
-        if (author == null) {
-            if (other.author != null)
+        if (creator == null) {
+            if (other.creator != null)
                 return false;
-        } else if (!author.equals(other.author))
+        } else if (!creator.equals(other.creator))
             return false;
 //        if (id != other.id)
 //            return false;
@@ -88,7 +88,7 @@ public class Note {
 
     @Override
     public String toString() {
-        return "Note [title=" + title + ", author=" + author + "]";
+        return "Note [title=" + title + ", author=" + creator + "]";
     }
 
 }

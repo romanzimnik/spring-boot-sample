@@ -31,7 +31,7 @@ public final class Utils {
         final Note note = new Note();
 //        note.setId(counter);
         note.setTitle("Title" + counter);
-        note.setAuthor("Author" + counter);
+        note.setCreator("Author" + counter);
         return note;
     }
 

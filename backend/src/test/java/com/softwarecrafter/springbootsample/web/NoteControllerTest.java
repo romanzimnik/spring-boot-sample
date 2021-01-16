@@ -42,7 +42,7 @@ public class NoteControllerTest extends AbstractTest {
         Note note = new Note();
         note.setId(new ObjectId());
         note.setTitle("Test Title");
-        note.setAuthor("Test Author");
+        note.setCreator("Test Author");
 
         String inputJson = super.mapToJson(note);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
@@ -60,7 +60,7 @@ public class NoteControllerTest extends AbstractTest {
         Note note = new Note();
         note.setId(new ObjectId());
         note.setTitle("Test Title");
-        note.setAuthor("Test Author");
+        note.setCreator("Test Author");
 
         String inputJson = super.mapToJson(note);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
@@ -72,7 +72,7 @@ public class NoteControllerTest extends AbstractTest {
         assertEquals(content, "{\"id\":10,\"title\":\"Test Title\",\"author\":\"Test Author\"}");
 
         note.setTitle("Test Title Update");
-        note.setAuthor("Test Author Update");
+        note.setCreator("Test Author Update");
 
         inputJson = super.mapToJson(note);
         mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
@@ -90,7 +90,7 @@ public class NoteControllerTest extends AbstractTest {
         Note note = new Note();
         note.setId(new ObjectId());
         note.setTitle("Test Title");
-        note.setAuthor("Test Author");
+        note.setCreator("Test Author");
 
         String inputJson = super.mapToJson(note);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)

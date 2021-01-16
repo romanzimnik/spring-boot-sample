@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 
@@ -20,26 +21,32 @@ public class Todo {
 
 //    @Column(name = "created_by_user", nullable = false)
 //    @CreatedBy
+    @Field(value = "creator")
     private String creator;
 
 //    @Column(name = "creation_time", nullable = false)
 //    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
 //    @CreatedDate
+    @Field(value = "creationTime")
     private LocalDateTime creationTime;
 
 //    @Column(name = "description", length = MAX_LENGTH_DESCRIPTION)
+    @Field(value = "description")
     private String description;
 
 //    @Column(name = "modified_by_user", nullable = false)
 //    @LastModifiedBy
+    @Field(value = "modifier")
     private String modifier;
 
 //    @Column(name = "modification_time")
 //    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
 //    @LastModifiedDate
+    @Field(value = "modificationTime")
     private LocalDateTime modificationTime;
 
 //    @Column(name = "title", nullable = false, length = MAX_LENGTH_TITLE)
+    @Field(value = "title")
     private String title;
 
     /**
