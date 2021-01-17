@@ -15,47 +15,115 @@
     <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
-  <build>
-    <resources>
-      <resource>
-        <directory>./dist/frontend</directory>
-        <targetPath>static</targetPath>
-      </resource>
-    </resources>
-    <plugins>
-      <plugin>
-        <groupId>com.github.eirslett</groupId>
-        <artifactId>frontend-maven-plugin</artifactId>
-        <version>1.7.6</version>
-        <configuration>
-          <workingDirectory>./</workingDirectory>
-          <nodeVersion>${node.version}</nodeVersion>
-          <npmVersion>${npm.version}</npmVersion>
-        </configuration>
-        <executions>
-          <execution>
-            <id>install node and npm</id>
-            <goals>
-              <goal>install-node-and-npm</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>npm install</id>
-            <goals>
-              <goal>npm</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>npm run build</id>
-            <goals>
-              <goal>npm</goal>
-            </goals>
+  <profiles>
+    <profile>
+      <id>unified</id>
+
+      <build>
+        <resources>
+          <resource>
+            <directory>./dist/frontend</directory>
+            <targetPath>static</targetPath>
+          </resource>
+        </resources>
+        <plugins>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
             <configuration>
-              <arguments>run build</arguments>
+              <workingDirectory>./</workingDirectory>
+              <nodeVersion>${node.version}</nodeVersion>
+              <npmVersion>${npm.version}</npmVersion>
             </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+            <executions>
+              <execution>
+                <id>install node and npm</id>
+                <goals>
+                  <goal>install-node-and-npm</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>npm install</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>npm run build</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <configuration>
+                  <arguments>run build</arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>separated</id>
+
+      <build>
+        <plugins>
+
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <configuration>
+              <workingDirectory>src/main/module/</workingDirectory>
+            </configuration>
+            <executions>
+              <!-- Install npm + ng -->
+              <execution>
+                <id>install-node-and-npm</id>
+                <goals>
+                  <goal>install-node-and-npm</goal>
+                </goals>
+                <configuration>
+                  <nodeVersion>${node.version}</nodeVersion>
+                  <npmVersion>${npm.version}</npmVersion>
+                </configuration>
+                <phase>initialize</phase>
+              </execution>
+              <execution>
+                <id>npm-install</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <configuration>
+                  <arguments>install</arguments>
+                </configuration>
+              </execution>
+              <!-- Set main + library versions to match artifact -->
+              <execution>
+                <id>npm-version</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <configuration>
+                  <arguments>version --allow-same-version ${project.version}</arguments>
+                </configuration>
+                <phase>generate-resources</phase>
+              </execution>
+              <!-- Build -->
+              <execution>
+                <id>npm-build</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <configuration>
+                  <arguments>run build</arguments>
+                </configuration>
+                <phase>generate-resources</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>

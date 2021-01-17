@@ -21,14 +21,18 @@ public class Note {
     @Field(value = "Author")
     private String creator;
 
+    @Field(value = "content")
+    private String content;
+
     public Note() {
         super();
     }
 
-    public Note(String title, String creator) {
+    public Note(String title, String creator, String content) {
         super();
         this.title = title;
         this.creator = creator;
+        this.content = content;
     }
 
     public ObjectId getId() {
@@ -53,6 +57,14 @@ public class Note {
 
     public void setCreator(String creator) {
         this.creator = creator;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override
@@ -88,7 +100,7 @@ public class Note {
 
     @Override
     public String toString() {
-        return "Note [title=" + title + ", author=" + creator + "]";
+        return "Note [title=" + title + ", author=" + creator + ", content" + content + "]";
     }
 
 }
