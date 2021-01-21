@@ -2,10 +2,4 @@
   Welcome to {{ title }}!
 </h1>
 
-<ul>
-  <li *ngFor="let todoItem of todoList">
-    <app-todo [item]="todoItem"></app-todo>
-  </li>
-</ul>
-
-<app-input-button-unit (submit)="addItem($event)"></app-input-button-unit>
+<app-list-manager></app-list-manager>
