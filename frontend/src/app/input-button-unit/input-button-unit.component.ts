@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input-button-unit.component.css']
 })
 export class InputButtonUnitComponent implements OnInit {
+  title = 'Hello World';
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
+  changeTitle(newTitle: string) {
+    this.title = newTitle;
+  }
 }
