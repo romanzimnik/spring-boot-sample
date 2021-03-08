@@ -25,7 +25,7 @@ public class NoteClientHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(NoteClientHandler.class);
 
     private final CloseableHttpClient client;
-    private final String SERVER_ROOT = "http://localhost:8081/api/notes";
+    private final String SERVER_ROOT = "http://localhost:8081/api/note";
     Gson gson = new Gson();
 
     /**

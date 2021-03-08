@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @author roman (romanzimnik) from software-crafter.com
  */
 @RestController
-@RequestMapping("/api/notes")
+@RequestMapping("/api/note")
 public class NoteController {
 
     @Autowired
@@ -46,7 +46,7 @@ public class NoteController {
 
     @PutMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Note updateNote(@RequestBody Note note, @PathVariable Long id) {
+    public Note update(@RequestBody Note note, @PathVariable Long id) {
         if (!note.getId().equals(id)) {
             throw new NoteIdMismatchException();
         }
