@@ -5,12 +5,19 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.LocalDateTime;
+
+import static com.softwarecrafter.springbootsample.persistence.common.PreCondition.*;
+import static com.softwarecrafter.springbootsample.persistence.common.PreCondition.isTrue;
+
 /**
  * @author roman (rzett) from software-crafter.com
  */
 
 @Document(collection = "Note")
 public class Note {
+
+    public static final int MAX_LENGTH_TITLE = 100;
 
     @Id
     private ObjectId id;
@@ -28,11 +35,21 @@ public class Note {
         super();
     }
 
-    public Note(String title, String creator, String content) {
+    public Note(Builder builder) {
         super();
         this.title = title;
         this.creator = creator;
         this.content = content;
+    }
+
+    private Todo(Todo.Builder builder) {
+        super();
+        this.title = builder.title;
+        this.description = builder.description;
+        this.creator = builder.creator;
+        this.modifier = builder.modifier;
+        this.creationTime = builder.creationTime;
+        this.modificationTime = builder.modificationTime;
     }
 
     public ObjectId getId() {
@@ -101,6 +118,52 @@ public class Note {
     @Override
     public String toString() {
         return "Note [title=" + title + ", author=" + creator + ", content" + content + "]";
+    }
+
+
+    private void requireValidTitle(String title,
+                                   String description,
+                                   String content) {
+        notNull(title, "Title cannot be null.");
+        notEmpty(title, "Title cannot be empty.");
+        isTrue(title.length() <= MAX_LENGTH_TITLE,
+                "The maximum length of the title is <%d> characters.",
+                MAX_LENGTH_TITLE
+        );
+    }
+
+    public static class Builder {
+        private String title;
+        private String creator;
+        private String content;
+
+        private Builder() {}
+
+        public Note.Builder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Note.Builder creator(String creator) {
+            this.creator = creator;
+            return this;
+        }
+
+        public Note.Builder content(String content) {
+            this.content = content;
+            return this;
+        }
+
+        public Note build() {
+            Note build = new Note(this);
+
+            build.requireValidTitle(
+                    build.getTitle(),
+                    build.getCreator(),
+                    build.getContent());
+
+            return build;
+        }
     }
 
 }
