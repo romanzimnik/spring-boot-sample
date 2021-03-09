@@ -4,12 +4,13 @@ import com.softwarecrafter.springbootsample.middleware.dto.NoteDTO;
 import org.bson.types.ObjectId;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface NoteService {
 
     List<NoteDTO> findAllNotes();
 
-    NoteDTO findById(ObjectId id);
+    Optional<NoteDTO> findById(ObjectId id);
 
     NoteDTO create(NoteDTO noteDTO);
 
