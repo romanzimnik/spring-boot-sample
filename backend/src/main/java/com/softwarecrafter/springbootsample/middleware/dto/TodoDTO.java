@@ -97,13 +97,13 @@ public class TodoDTO {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .append("id", this.id)
+                .append("title", this.title)
+                .append("description", this.description)
                 .append("creator", this.creator)
                 .append("creationTime", this.creationTime)
-                .append("description", this.description)
-                .append("id", this.id)
                 .append("modifier", this.modifier)
                 .append("modificationTime", this.modificationTime)
-                .append("title", this.title)
                 .toString();
     }
 }
