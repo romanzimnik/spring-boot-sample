@@ -2,8 +2,6 @@ package com.softwarecrafter.springbootsample.web.controller;
 
 import com.softwarecrafter.springbootsample.middleware.dto.NoteDTO;
 import com.softwarecrafter.springbootsample.middleware.services.NoteService;
-import com.softwarecrafter.springbootsample.persistence.model.Note;
-import com.softwarecrafter.springbootsample.web.exception.NoteIdMismatchException;
 import com.softwarecrafter.springbootsample.web.exception.NoteNotFoundException;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
@@ -13,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 /**
  * @author roman (romanzimnik) from software-crafter.com
@@ -38,9 +35,9 @@ public class NoteController {
     }
 
     @GetMapping("/{id}")
-    public Optional<NoteDTO> findOne(@PathVariable ObjectId id) {
+    public NoteDTO findOne(@PathVariable ObjectId id) {
         return service.findById(id)
-                .orElseThrow(() -> (new NoteNotFoundException));
+                .orElseThrow(() -> new NoteNotFoundException());
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")

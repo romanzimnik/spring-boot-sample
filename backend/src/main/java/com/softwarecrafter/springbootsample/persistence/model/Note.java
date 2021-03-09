@@ -5,10 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.time.LocalDateTime;
-
 import static com.softwarecrafter.springbootsample.persistence.common.PreCondition.*;
-import static com.softwarecrafter.springbootsample.persistence.common.PreCondition.isTrue;
 
 /**
  * @author roman (rzett) from software-crafter.com
