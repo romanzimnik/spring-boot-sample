@@ -11,6 +11,8 @@ export class TodoComponent implements OnInit {
 
   @Output() remove: EventEmitter<Todo> = new EventEmitter();
 
+  @Output() update: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -18,5 +20,12 @@ export class TodoComponent implements OnInit {
 
   removeItem() {
     this.remove.emit(this.item);
+  }
+
+  completeItem() {
+    this.update.emit({
+      item: this.item,
+      changes: {completed: !this.item.completed}
+    });
   }
 }

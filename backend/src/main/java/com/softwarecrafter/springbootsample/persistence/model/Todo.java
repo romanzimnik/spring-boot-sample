@@ -102,13 +102,6 @@ public class Todo {
         return title;
     }
 
-//    void update(String newTitle, String newDescription) {
-//        requireValidTitleAndDescription(newTitle, newDescription);
-//
-//        this.title = newTitle;
-//        this.description = newDescription;
-//    }
-
     private void requireValidTitleAndDescription(String title,
                                                  String description,
                                                  String creator,
