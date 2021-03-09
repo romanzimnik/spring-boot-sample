@@ -13,7 +13,6 @@ import static com.softwarecrafter.springbootsample.persistence.common.PreConditi
 /**
  * @author roman (rzett) from software-crafter.com
  */
-
 @Document(collection = "Note")
 public class Note {
 
@@ -37,19 +36,9 @@ public class Note {
 
     public Note(Builder builder) {
         super();
-        this.title = title;
-        this.creator = creator;
-        this.content = content;
-    }
-
-    private Todo(Todo.Builder builder) {
-        super();
         this.title = builder.title;
-        this.description = builder.description;
         this.creator = builder.creator;
-        this.modifier = builder.modifier;
-        this.creationTime = builder.creationTime;
-        this.modificationTime = builder.modificationTime;
+        this.content = builder.content;
     }
 
     public ObjectId getId() {
@@ -120,7 +109,6 @@ public class Note {
         return "Note [title=" + title + ", author=" + creator + ", content" + content + "]";
     }
 
-
     private void requireValidTitle(String title,
                                    String description,
                                    String content) {
@@ -139,17 +127,17 @@ public class Note {
 
         private Builder() {}
 
-        public Note.Builder title(String title) {
+        public Builder title(String title) {
             this.title = title;
             return this;
         }
 
-        public Note.Builder creator(String creator) {
+        public Builder creator(String creator) {
             this.creator = creator;
             return this;
         }
 
-        public Note.Builder content(String content) {
+        public Builder content(String content) {
             this.content = content;
             return this;
         }
