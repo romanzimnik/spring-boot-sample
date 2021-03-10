@@ -3,16 +3,15 @@ package com.softwarecrafter.springbootsample.middleware.services;
 import com.softwarecrafter.springbootsample.middleware.dto.NoteDTO;
 import com.softwarecrafter.springbootsample.persistence.model.Note;
 import com.softwarecrafter.springbootsample.persistence.model.NoteMapper;
-import com.softwarecrafter.springbootsample.persistence.model.Todo;
 import com.softwarecrafter.springbootsample.persistence.repository.NoteRepository;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RepositoryNoteService implements NoteService {
@@ -27,6 +26,7 @@ public class RepositoryNoteService implements NoteService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<NoteDTO> findAllNotes() {
 
         List<Note> notes = repository.findAll();
@@ -35,13 +35,19 @@ public class RepositoryNoteService implements NoteService {
     }
 
     @Override
-    public Optional<NoteDTO> findById(ObjectId id) {
-        return null;
+    public NoteDTO findById(ObjectId id) {
+
+        Note note = repository.findById(id);
+
+        return NoteMapper.mapEntityIntoDto(note);
     }
 
     @Override
-    public NoteDTO create(NoteDTO noteDTO) {
-        return null;
+    public NoteDTO create(NoteDTO dto) {
+
+        Note note = repository.save(NoteMapper.mapDtoToEntity(dto));
+
+        return NoteMapper.mapEntityIntoDto(note);
     }
 
     @Override
