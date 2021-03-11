@@ -36,8 +36,7 @@ public class NoteController {
 
     @GetMapping("/{id}")
     public NoteDTO findOne(@PathVariable ObjectId id) {
-        return service.findById(id)
-                .orElseThrow(() -> new NoteNotFoundException());
+        return service.findById(id);
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")

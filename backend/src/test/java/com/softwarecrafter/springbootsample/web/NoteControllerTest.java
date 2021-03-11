@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NoteControllerTest extends AbstractTest {
 
-    private final String SERVER_ROOT = "http://localhost:8081/api/notes";
+    private final String SERVER_ROOT = "http://localhost:8081/api/note";
 
     @Override
     @Before
@@ -33,7 +33,6 @@ public class NoteControllerTest extends AbstractTest {
         String content = mvcResult.getResponse().getContentAsString();
         Note[] noteList = super.mapFromJson(content, Note[].class);
         assertTrue(noteList.length > 0);
-
     }
 
     @Test
@@ -43,6 +42,7 @@ public class NoteControllerTest extends AbstractTest {
         note.setId(new ObjectId());
         note.setTitle("Test Title");
         note.setCreator("Test Author");
+        note.setContent("Test Content");
 
         String inputJson = super.mapToJson(note);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)

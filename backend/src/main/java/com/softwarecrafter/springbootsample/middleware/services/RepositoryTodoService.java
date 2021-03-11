@@ -53,9 +53,9 @@ public class RepositoryTodoService implements TodoService {
 
     @Override
     public TodoDTO delete(ObjectId id) {
-        Todo t = repository.findById(id);
-        repository.delete(t);
-        return TodoMapper.mapEntityIntoDto(t);
+        Todo todo = repository.findById(id);
+        repository.delete(todo);
+        return TodoMapper.mapEntityIntoDto(todo);
     }
 
     @Override
