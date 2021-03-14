@@ -1,5 +1,6 @@
 package com.softwarecrafter.springbootsample.web;
 
+import com.google.gson.Gson;
 import com.softwarecrafter.springbootsample.AbstractTest;
 import com.softwarecrafter.springbootsample.persistence.model.Note;
 import org.bson.types.ObjectId;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NoteControllerTest extends AbstractTest {
 
-    private final String SERVER_ROOT = "http://localhost:8081/api/notes";
+    private final String SERVER_ROOT = "http://localhost:8081/api/note";
 
     @Override
     @Before
@@ -33,7 +34,6 @@ public class NoteControllerTest extends AbstractTest {
         String content = mvcResult.getResponse().getContentAsString();
         Note[] noteList = super.mapFromJson(content, Note[].class);
         assertTrue(noteList.length > 0);
-
     }
 
     @Test
@@ -43,6 +43,7 @@ public class NoteControllerTest extends AbstractTest {
         note.setId(new ObjectId());
         note.setTitle("Test Title");
         note.setCreator("Test Author");
+        note.setContent("Test Content");
 
         String inputJson = super.mapToJson(note);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
@@ -51,7 +52,10 @@ public class NoteControllerTest extends AbstractTest {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
         String content = mvcResult.getResponse().getContentAsString();
-        assertEquals(content, "{\"id\":10,\"title\":\"Test Title\",\"author\":\"Test Author\"}");
+
+        Gson gson = new Gson();
+        Note response = gson.fromJson(content, Note.class);
+        assertEquals(note, response);
     }
 
     @Test
@@ -61,6 +65,7 @@ public class NoteControllerTest extends AbstractTest {
         note.setId(new ObjectId());
         note.setTitle("Test Title");
         note.setCreator("Test Author");
+        note.setContent("Test Content");
 
         String inputJson = super.mapToJson(note);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
@@ -69,10 +74,14 @@ public class NoteControllerTest extends AbstractTest {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
         String content = mvcResult.getResponse().getContentAsString();
-        assertEquals(content, "{\"id\":10,\"title\":\"Test Title\",\"author\":\"Test Author\"}");
+
+        Gson gson = new Gson();
+        Note response = gson.fromJson(content, Note.class);
+        assertEquals(note, response);
 
         note.setTitle("Test Title Update");
         note.setCreator("Test Author Update");
+        note.setContent("Test Content Update");
 
         inputJson = super.mapToJson(note);
         mvcResult = mvc.perform(MockMvcRequestBuilders.post(SERVER_ROOT)
@@ -81,7 +90,9 @@ public class NoteControllerTest extends AbstractTest {
         status = mvcResult.getResponse().getStatus();
         assertEquals(201, status);
         content = mvcResult.getResponse().getContentAsString();
-        assertEquals(content, "{\"id\":10,\"title\":\"Test Title Update\",\"author\":\"Test Author Update\"}");
+
+        response = gson.fromJson(content, Note.class);
+        assertEquals(note, response);
     }
 
     @Test

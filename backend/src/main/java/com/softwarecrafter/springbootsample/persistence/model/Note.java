@@ -117,6 +117,10 @@ public class Note {
         );
     }
 
+    public static Builder getBuilder() {
+        return new Builder();
+    }
+
     public static class Builder {
         private String title;
         private String creator;

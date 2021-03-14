@@ -37,33 +37,33 @@ public class RepositoryTodoService implements TodoService {
     @Transactional(readOnly = true)
     public TodoDTO findById(ObjectId id) {
 
-        Todo t = repository.findById(id);
+        Todo todo = repository.findById(id);
 
-        return TodoMapper.mapEntityIntoDto(t);
+        return TodoMapper.mapEntityIntoDto(todo);
     }
 
     @Override
     @Transactional
-    public TodoDTO create(TodoDTO todo) {
+    public TodoDTO create(TodoDTO dto) {
 
-        Todo t = repository.save(TodoMapper.mapDtoToEntity(todo));
+        Todo todo = repository.save(TodoMapper.mapDtoToEntity(dto));
 
-        return TodoMapper.mapEntityIntoDto(t);
+        return TodoMapper.mapEntityIntoDto(todo);
     }
 
     @Override
     public TodoDTO delete(ObjectId id) {
-        Todo t = repository.findById(id);
-        repository.delete(t);
-        return TodoMapper.mapEntityIntoDto(t);
+        Todo todo = repository.findById(id);
+        repository.delete(todo);
+        return TodoMapper.mapEntityIntoDto(todo);
     }
 
     @Override
     @Transactional
-    public TodoDTO update(TodoDTO todo) {
+    public TodoDTO update(TodoDTO dto) {
 
-        Todo t = repository.save(TodoMapper.mapDtoToEntity(todo));
+        Todo todo = repository.save(TodoMapper.mapDtoToEntity(dto));
 
-        return TodoMapper.mapEntityIntoDto(t);
+        return TodoMapper.mapEntityIntoDto(todo);
     }
 }
