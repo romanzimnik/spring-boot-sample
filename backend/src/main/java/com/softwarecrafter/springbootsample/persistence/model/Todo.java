@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 import static com.softwarecrafter.springbootsample.persistence.common.PreCondition.*;
 
-@Document(collection = "Todo")
+@Document(collection = "Note")
 public class Todo {
 
     public static final int MAX_LENGTH_DESCRIPTION = 500;

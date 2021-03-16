@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Todo} from "../interfaces/todo";
-import {TodoListService} from "../services/todo-list.service";
+import {Note} from "../interfaces/note";
+import {NoteListService} from "../services/note-list.service";
 
 @Component({
   selector: 'app-list-manager',
@@ -9,23 +9,23 @@ import {TodoListService} from "../services/todo-list.service";
 })
 export class ListManagerComponent implements OnInit {
 
-  todoList!: Todo[];
+  noteList!: Note[];
 
-  constructor(private todoListService: TodoListService) { }
+  constructor(private noteListService: NoteListService) { }
 
   ngOnInit() {
-    this.todoList = this.todoListService.getTodoList();
+    this.noteList = this.noteListService.getNoteList();
   }
 
   addItem(title: string) {
-    this.todoListService.addItem({ title });
+    this.noteListService.addItem({ title });
   }
 
-  removeItem(item: Todo) {
-    this.todoListService.deleteItem(item);
+  removeItem(item: Note) {
+    this.noteListService.deleteItem(item);
   }
 
-  updateItem(item: Todo, changes: any) {
-    this.todoListService.updateItem(item, changes);
+  updateItem(item: Note, changes: any) {
+    this.noteListService.updateItem(item, changes);
   }
 }
