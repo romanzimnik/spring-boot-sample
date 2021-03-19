@@ -1,4 +1,4 @@
-export interface Todo {
+export interface Note {
   title: string;
   completed?: boolean;
 }

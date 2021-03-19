@@ -17,6 +17,7 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/api/note")
+@CrossOrigin(origins = "http://localhost:4200")
 public class NoteController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NoteController.class);

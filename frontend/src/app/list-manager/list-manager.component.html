@@ -1,11 +1,11 @@
-<div class="todo-app">
+<div class="note-app">
   <app-input-button-unit (submit)="addItem($event)"></app-input-button-unit>
 
   <ul>
-    <li *ngFor="let todoItem of todoList">
-      <app-todo [item]="todoItem"
+    <li *ngFor="let noteItem of noteList">
+      <app-note [item]="noteItem"
                 (remove)="removeItem($event)"
-                (update)="updateItem($event.item, $event.changes)"></app-todo>
+                (update)="updateItem($event.item, $event.changes)"></app-note>
     </li>
   </ul>
 </div>

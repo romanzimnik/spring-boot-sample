@@ -1,5 +1,6 @@
 package com.softwarecrafter.springbootsample.persistence.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -103,7 +104,11 @@ public class Note {
 
     @Override
     public String toString() {
-        return "Note [title=" + title + ", author=" + creator + ", content" + content + "]";
+        return new ToStringBuilder(this)
+                .append("title", this.title)
+                .append("author", this.creator)
+                .append("content", this.content)
+                .toString();
     }
 
     private void requireValidTitle(String title,

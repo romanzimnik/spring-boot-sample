@@ -1,15 +1,15 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Todo} from "../interfaces/todo";
+import {Note} from "../interfaces/note";
 
 @Component({
-  selector: 'app-todo',
-  templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css']
+  selector: 'app-note',
+  templateUrl: './note.component.html',
+  styleUrls: ['./note.component.css']
 })
-export class TodoComponent implements OnInit {
-  @Input() item!: Todo;
+export class NoteComponent implements OnInit {
+  @Input() item!: Note;
 
-  @Output() remove: EventEmitter<Todo> = new EventEmitter();
+  @Output() remove: EventEmitter<Note> = new EventEmitter();
 
   @Output() update: EventEmitter<any> = new EventEmitter();
 
